@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/tb_back_from_donvi"
+            android:id="@+id/ib_back_from_donvi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
@@ -27,7 +27,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="#FFC107"
-            android:gravity="center_vertical"
             android:text="Chi tiết đơn vị"
             android:textAlignment="center"
             android:textColor="#F44336"
@@ -45,16 +44,15 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView3"
                 android:layout_width="83dp"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:text="Tên đơn vị"
-                android:textAlignment="center"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edt_donvi_address"
+                android:id="@+id/edt_donvi_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -66,16 +64,15 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView4"
                 android:layout_width="83dp"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
                 android:text="Số điện thoại"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edt_donvi_address"
+                android:id="@+id/edt_donvi_phoneNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -90,9 +87,8 @@
                 android:id="@+id/textView2"
                 android:layout_width="83dp"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
                 android:text="Địa chỉ"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textSize="16sp" />
 
             <EditText

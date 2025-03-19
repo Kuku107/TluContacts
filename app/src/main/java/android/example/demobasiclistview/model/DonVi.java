@@ -1,7 +1,9 @@
 package android.example.demobasiclistview.model;
 
-public class DonVi {
+import java.io.Serializable;
 
+public class DonVi implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String name;
     private String phoneNumber;

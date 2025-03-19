@@ -1,5 +1,6 @@
 package android.example.demobasiclistview;
 
+import android.content.Intent;
 import android.example.demobasiclistview.adapter.DonViAdapter;
 import android.example.demobasiclistview.dao.implement.DonViDao;
 import android.example.demobasiclistview.model.CanBo;
@@ -20,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class DonViActivity extends AppCompatActivity implements OnItemClickListener {
+public class DonViActivity extends AppCompatActivity implements DonViAdapter.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private DonViAdapter donViAdapter;
@@ -34,7 +35,8 @@ public class DonViActivity extends AppCompatActivity implements OnItemClickListe
 
         recyclerView = findViewById(R.id.rv_donvi);
         dao = new DonViDao(this);
-        donViAdapter = new DonViAdapter(dao.getAll(), this);
+        donViAdapter = new DonViAdapter(this, dao.getAll());
+        donViAdapter.setOnItemClickListener(this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -44,8 +46,9 @@ public class DonViActivity extends AppCompatActivity implements OnItemClickListe
     }
 
     @Override
-    public void onItemClick(int position) {
-        DonVi donVi = dao.getAll().get(position);
-        Toast.makeText(this, donVi.getName(), Toast.LENGTH_SHORT).show();
+    public void onItemClick(DonVi donVi) {
+        Intent myIntent = new Intent(DonViActivity.this, DetailDonViActivity.class);
+        myIntent.putExtra("donVi", donVi);
+        startActivity(myIntent);
     }
 }

@@ -1,6 +1,7 @@
 package android.example.demobasiclistview.adapter;
 
 
+import android.content.Context;
 import android.example.demobasiclistview.R;
 import android.example.demobasiclistview.model.DonVi;
 import android.example.demobasiclistview.utils.OnItemClickListener;
@@ -16,14 +17,19 @@ import java.util.List;
 
 public class DonViAdapter extends RecyclerView.Adapter<DonViAdapter.DonViViewHolder> {
     private List<DonVi> donViList;
+    private Context context;
     private OnItemClickListener listener;
 
-    public DonViAdapter(List<DonVi> donViList) {
-        this.donViList = donViList;
+    public interface OnItemClickListener {
+        void onItemClick(DonVi donVi);
     }
 
-    public DonViAdapter(List<DonVi> donViList, OnItemClickListener listener) {
+    public DonViAdapter(Context context, List<DonVi> donViList) {
         this.donViList = donViList;
+        this.context = context;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
@@ -39,6 +45,15 @@ public class DonViAdapter extends RecyclerView.Adapter<DonViAdapter.DonViViewHol
         DonVi donVi = donViList.get(position);
         holder.tvTenDonVi.setText(donVi.getName());
         holder.tvSDT.setText(donVi.getPhoneNumber());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(donVi);
+                }
+            }
+        });
     }
 
     @Override
@@ -47,23 +62,13 @@ public class DonViAdapter extends RecyclerView.Adapter<DonViAdapter.DonViViewHol
         return donViList.size();
     }
 
-    class DonViViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class DonViViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTenDonVi;
         private TextView tvSDT;
         public DonViViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTenDonVi = itemView.findViewById(R.id.tv_TenDonVi);
             tvSDT = itemView.findViewById(R.id.tv_SDT_DonVi);
-        }
-
-        @Override
-        public void onClick(View v) {
-            if (listener != null) {
-                int position = getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(position);
-                }
-            }
         }
     }
 }
