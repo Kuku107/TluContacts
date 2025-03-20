@@ -1,7 +1,9 @@
 package android.example.demobasiclistview.adapter;
 
+import android.content.Context;
 import android.example.demobasiclistview.R;
 import android.example.demobasiclistview.model.CanBo;
+import android.example.demobasiclistview.model.DonVi;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,20 @@ import java.util.List;
 public class CanBoAdapter extends RecyclerView.Adapter<CanBoAdapter.CanBoHolder> {
 
     private List<CanBo> canBoList;
+    private Context context;
+    private OnItemClickListener listener;
 
-    public CanBoAdapter(List<CanBo> canBoList) {
+    public interface OnItemClickListener {
+        void onItemClick(CanBo canBo);
+    }
+
+    public CanBoAdapter(Context context, List<CanBo> canBoList) {
+        this.context = context;
         this.canBoList = canBoList;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,6 +46,15 @@ public class CanBoAdapter extends RecyclerView.Adapter<CanBoAdapter.CanBoHolder>
         CanBo canBo = canBoList.get(position);
         holder.tvTenCanBo.setText(canBo.getName());
         holder.tvSDT.setText(canBo.getPhoneNumber());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(canBo);
+                }
+            }
+        });
     }
 
     @Override

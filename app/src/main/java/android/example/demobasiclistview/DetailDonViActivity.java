@@ -14,9 +14,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class DetailDonViActivity extends AppCompatActivity {
 
@@ -32,7 +29,7 @@ public class DetailDonViActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_don_vi);
 
         btnBack = findViewById(R.id.ib_back_from_donvi);
-        edtName = findViewById(R.id.edt_donvi_name);
+        edtName = findViewById(R.id.edt_canbo_role);
         edtPhone = findViewById(R.id.edt_donvi_phoneNumber);
         edtAddress = findViewById(R.id.edt_donvi_address);
         btnCall = findViewById(R.id.btn_donvi_call);

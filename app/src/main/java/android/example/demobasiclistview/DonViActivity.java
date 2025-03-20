@@ -35,6 +35,11 @@ public class DonViActivity extends AppCompatActivity implements DonViAdapter.OnI
 
         recyclerView = findViewById(R.id.rv_donvi);
         dao = new DonViDao(this);
+        for (int i = 1; i <= 10; ++i) {
+            dao.insert(
+                    new DonVi("Don vi " + i, "0824122387", "Ha Noi")
+            );
+        }
         donViAdapter = new DonViAdapter(this, dao.getAll());
         donViAdapter.setOnItemClickListener(this);
 
